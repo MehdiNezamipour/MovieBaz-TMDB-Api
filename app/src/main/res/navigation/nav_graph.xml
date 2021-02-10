@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/popular_movies">
+
+    <fragment
+        android:id="@+id/popular_movies"
+        android:name="com.nezamipour.mehdi.filmbaz.ui.home.PopularMovieFragment"
+        android:label="fragment_popular_movie"
+        tools:layout="@layout/fragment_popular_movies" />
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.nezamipour.mehdi.filmbaz.ui.details.MovieDetailsFragment"
+        android:label="fragment_movie_details"
+        tools:layout="@layout/fragment_movie_details" />
+</navigation>
