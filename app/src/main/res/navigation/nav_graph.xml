@@ -3,16 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/popular_movies">
+    app:startDestination="@id/movieListFragment">
 
     <fragment
-        android:id="@+id/popular_movies"
-        android:name="com.nezamipour.mehdi.filmbaz.ui.home.PopularMovieFragment"
-        android:label="fragment_popular_movie"
-        tools:layout="@layout/fragment_popular_movies" />
+        android:id="@+id/movieListFragment"
+        android:name="com.nezamipour.mehdi.moviebaz.view.home.MovieListFragment"
+        android:label="fragment_movie_list"
+        tools:layout="@layout/fragment_movie_list">
+        <action
+            android:id="@+id/action_movieListFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="com.nezamipour.mehdi.filmbaz.ui.details.MovieDetailsFragment"
+        android:name="com.nezamipour.mehdi.moviebaz.view.detail.MovieDetailsFragment"
         android:label="fragment_movie_details"
         tools:layout="@layout/fragment_movie_details" />
 </navigation>

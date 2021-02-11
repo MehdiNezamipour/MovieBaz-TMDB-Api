@@ -2,6 +2,7 @@ package com.nezamipour.mehdi.moviebaz
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.nezamipour.mehdi.moviebaz.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
