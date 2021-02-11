@@ -3,6 +3,7 @@ package com.nezamipour.mehdi.moviebaz.view.home
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -62,6 +63,15 @@ class MovieAdapter(diffCallback: DiffUtil.ItemCallback<Movie>) :
                     .with(binding.root)
                     .load(ImageUtils.getImageUrl(this))
                     .into(binding.imageViewMovie)
+            }
+
+            binding.root.setOnClickListener {
+                Navigation.findNavController(binding.root)
+                    .navigate(
+                        MovieListFragmentDirections.actionMovieListFragmentToMovieDetailsFragment(
+                            movie
+                        )
+                    )
             }
 
         }

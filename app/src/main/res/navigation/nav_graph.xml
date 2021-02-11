@@ -18,5 +18,9 @@
         android:id="@+id/movieDetailsFragment"
         android:name="com.nezamipour.mehdi.moviebaz.view.detail.MovieDetailsFragment"
         android:label="fragment_movie_details"
-        tools:layout="@layout/fragment_movie_details" />
+        tools:layout="@layout/fragment_movie_details" >
+        <argument
+            android:name="movie"
+            app:argType="com.nezamipour.mehdi.moviebaz.data.model.Movie" />
+    </fragment>
 </navigation>
