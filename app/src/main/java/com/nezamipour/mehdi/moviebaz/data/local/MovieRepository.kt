@@ -20,5 +20,4 @@ class MovieRepository(private val movieAppService: MovieAppService) {
         }
     }
 
-
 }
