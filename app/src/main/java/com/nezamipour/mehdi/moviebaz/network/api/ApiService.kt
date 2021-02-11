@@ -26,7 +26,7 @@ interface ApiService {
     suspend fun searchMovie(
         @Query("api_key") api_key: String,
         @Query("query") searchQuery: String
-    )
+    ): Response<MovieListResponse>
 
     @GET(Routes.MOVIE_DISCOVER)
     suspend fun discoverByGenre(

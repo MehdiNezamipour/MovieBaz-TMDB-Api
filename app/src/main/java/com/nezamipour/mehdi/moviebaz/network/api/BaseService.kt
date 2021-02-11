@@ -1,6 +1,5 @@
 package com.nezamipour.mehdi.moviebaz.network.api
 
-import com.nezamipour.mehdi.moviebaz.data.model.Result
 import com.nezamipour.mehdi.moviebaz.network.exception.NoInternetException
 import com.nezamipour.mehdi.moviebaz.network.exception.NotFoundException
 import com.nezamipour.mehdi.moviebaz.network.exception.UnAuthorizedException
@@ -14,7 +13,6 @@ import java.net.UnknownHostException
 abstract class BaseService {
 
     protected suspend fun <T : Any> createCall(call: suspend () -> Response<T>): Result<T> {
-
         val response: Response<T>
         try {
             response = call.invoke()
@@ -52,7 +50,6 @@ abstract class BaseService {
             -> NoInternetException()
             else
             -> UnKnownException()
-
         }
     }
 

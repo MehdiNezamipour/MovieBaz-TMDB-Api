@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target
 import com.nezamipour.mehdi.moviebaz.data.model.Movie
 import com.nezamipour.mehdi.moviebaz.databinding.FragmentMovieDetailsBinding
 import com.nezamipour.mehdi.moviebaz.utils.ImageUtils
