@@ -1,10 +1,7 @@
 package com.nezamipour.mehdi.moviebaz
 
 import android.app.Application
-import com.nezamipour.mehdi.moviebaz.di.detailViewModelModule
-import com.nezamipour.mehdi.moviebaz.di.networkModule
-import com.nezamipour.mehdi.moviebaz.di.repositoryModule
-import com.nezamipour.mehdi.moviebaz.di.viewModelModule
+import com.nezamipour.mehdi.moviebaz.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -15,7 +12,7 @@ class MovieBazApp : Application() {
 
         startKoin {
             androidContext(this@MovieBazApp)
-            modules(listOf(networkModule, repositoryModule, viewModelModule, detailViewModelModule))
+            modules(listOf(networkModule, repositoryModule, viewModelModule, detailViewModelModule, searchViewModelModule))
         }
     }
 }

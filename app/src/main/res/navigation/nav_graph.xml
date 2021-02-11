@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_movieListFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/action_movieListFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
@@ -23,4 +26,17 @@
             android:name="movie"
             app:argType="com.nezamipour.mehdi.moviebaz.data.model.Movie" />
     </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.nezamipour.mehdi.moviebaz.view.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment"
+            app:popUpTo="@id/searchFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 </navigation>
