@@ -9,12 +9,15 @@ import com.bumptech.glide.Glide
 import com.nezamipour.mehdi.moviebaz.data.model.Movie
 import com.nezamipour.mehdi.moviebaz.databinding.FragmentMovieDetailsBinding
 import com.nezamipour.mehdi.moviebaz.utils.ImageUtils
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MovieDetailsFragment : Fragment() {
 
     private lateinit var movie: Movie
     private lateinit var binding: FragmentMovieDetailsBinding
+    private val viewModel: DetailsViewModel by viewModel()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,9 @@ class MovieDetailsFragment : Fragment() {
             binding.textViewLongDescription.text = this.overview
             binding.tvMovieTitle.text = this.title
             binding.textViewReleaseData.text = this.releaseDate
+            binding.textViewGenres.text = this.genreIds?.let {
+                viewModel.extractMovieGenres(it)
+            }
 
             context?.let {
                 Glide

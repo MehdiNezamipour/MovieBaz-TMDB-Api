@@ -11,6 +11,7 @@ class MovieRepository(private val movieAppService: MovieAppService) {
     var genres: List<Genre>? = emptyList()
 
 
+
     suspend fun getPopularMovies(page: Int): MovieListResponse {
         return when (val result = movieAppService.fetchPopularMovies(page)) {
             is Result.Success -> result.data
@@ -38,5 +39,6 @@ class MovieRepository(private val movieAppService: MovieAppService) {
             is Result.Error -> throw result.error
         }
     }
+
 
 }

@@ -7,4 +7,7 @@
     <string name="genres">genres</string>
     <string name="search">Search</string>
     <string name="filterByGenre">Choose Genres</string>
+    <string name="overview">Overview</string>
+    <string name="captal_genres">Genres</string>
+    <string name="release_data">Release Data:</string>
 </resources>
