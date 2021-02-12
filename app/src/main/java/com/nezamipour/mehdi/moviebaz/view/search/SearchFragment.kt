@@ -1,15 +1,18 @@
 package com.nezamipour.mehdi.moviebaz.view.search
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nezamipour.mehdi.moviebaz.databinding.FragmentSearchBinding
+import com.nezamipour.mehdi.moviebaz.utils.UiUtils
 import org.koin.android.ext.android.inject
 
 
@@ -34,6 +37,7 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -43,6 +47,8 @@ class SearchFragment : Fragment() {
         binding.recyclerViewSearchResult.layoutManager = LinearLayoutManager(context)
         adapter = SearchAdapter(emptyList())
         binding.recyclerViewSearchResult.adapter = adapter
+
+        openKeyboardWhenFragmentComeUp()
 
         binding.toolbarSearch.editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -66,10 +72,11 @@ class SearchFragment : Fragment() {
 
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            SearchFragment().apply {
-            }
+    private fun openKeyboardWhenFragmentComeUp() {
+        binding.toolbarSearch.editTextSearch.requestFocus()
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(binding.toolbarSearch.editTextSearch, InputMethodManager.SHOW_IMPLICIT)
     }
+
+
 }

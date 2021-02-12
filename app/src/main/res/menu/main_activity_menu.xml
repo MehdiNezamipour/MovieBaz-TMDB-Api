@@ -4,13 +4,13 @@
 
     <item
         android:id="@+id/app_bar_filter"
-        android:icon="@drawable/ic_filter"
+        android:icon="@drawable/filter"
         android:title="@string/genres"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/app_bar_search"
-        android:icon="@drawable/ic_search_black_24dp"
+        android:icon="@drawable/search"
         android:title="@string/search"
         app:showAsAction="always" />
 

@@ -3,7 +3,6 @@ package com.nezamipour.mehdi.moviebaz.paging
 import androidx.paging.PagingSource
 import com.nezamipour.mehdi.moviebaz.data.local.MovieRepository
 import com.nezamipour.mehdi.moviebaz.data.model.Movie
-import com.nezamipour.mehdi.moviebaz.network.api.ApiService
 import com.nezamipour.mehdi.moviebaz.network.response.MovieListResponse
 
 class MoviePagingSource(private val repository: MovieRepository, var genres: String?) :

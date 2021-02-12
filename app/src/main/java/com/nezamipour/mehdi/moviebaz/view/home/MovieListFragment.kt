@@ -17,7 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class MovieListFragment : Fragment() {
 
-    private lateinit var mBinding: FragmentMovieListBinding
+    private lateinit var binding: FragmentMovieListBinding
     private lateinit var movieAdapter: MovieAdapter
     private val viewModel: HomeViewModel by sharedViewModel()
 
@@ -48,8 +48,8 @@ class MovieListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mBinding = FragmentMovieListBinding.inflate(inflater, container, false)
-        return mBinding.root
+        binding = FragmentMovieListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 
@@ -57,8 +57,7 @@ class MovieListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerViewMovies.adapter = movieAdapter
 
-
-        mBinding.recyclerViewMovies.apply {
+        binding.recyclerViewMovies.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = movieAdapter.withLoadStateFooter(
@@ -77,19 +76,13 @@ class MovieListFragment : Fragment() {
         movieAdapter.addLoadStateListener { loadState ->
 
             if (loadState.refresh is LoadState.Loading) {
-                // Show ProgressBar
-                mBinding.progressBar.visibility = View.VISIBLE
-            } else {
-                // Hide ProgressBar
-                mBinding.progressBar.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
+                binding.recyclerViewMovies.visibility = View.GONE
 
-                // If we have an error, show a toast
-                val errorState = when {
-                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                    else -> null
-                }
+            } else {
+                binding.progressBar.visibility = View.GONE
+                binding.recyclerViewMovies.visibility = View.VISIBLE
+
             }
         }
 
