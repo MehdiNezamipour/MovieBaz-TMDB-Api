@@ -11,7 +11,6 @@ import com.nezamipour.mehdi.moviebaz.databinding.FragmentMovieDetailsBinding
 import com.nezamipour.mehdi.moviebaz.utils.ImageUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class MovieDetailsFragment : Fragment() {
 
     private lateinit var movie: Movie
@@ -21,8 +20,8 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         movie = MovieDetailsFragmentArgs.fromBundle(requireArguments()).movie
+
     }
 
     override fun onCreateView(
@@ -43,6 +42,8 @@ class MovieDetailsFragment : Fragment() {
             binding.textViewGenres.text = this.genreIds?.let {
                 viewModel.extractMovieGenres(it)
             }
+            binding.ratingBar.rating = this.voteAverage!!.div(2)
+            binding.textViewRating.text = this.voteAverage.toString()
 
             context?.let {
                 Glide
@@ -61,16 +62,7 @@ class MovieDetailsFragment : Fragment() {
                     .into(binding.imageViewSmallImage)
             }
 
-
         }
-
-
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            MovieDetailsFragment().apply {
-            }
-    }
 }

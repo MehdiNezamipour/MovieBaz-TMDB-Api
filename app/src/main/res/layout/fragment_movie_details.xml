@@ -73,12 +73,38 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/release_data"
+            android:text="@string/release_date"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewSmallImage"
             app:layout_constraintStart_toEndOf="@+id/imageViewSmallImage"
             app:layout_constraintTop_toBottomOf="@+id/imageViewBackGround"
             app:layout_constraintVertical_bias="0.0" />
 
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewSmallImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageViewSmallImage"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textViewRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+            app:layout_constraintStart_toEndOf="@+id/ratingBar"
+            app:layout_constraintTop_toTopOf="@+id/ratingBar"
+            tools:text="4.5" />
 
         <TextView
             android:id="@+id/textView2"

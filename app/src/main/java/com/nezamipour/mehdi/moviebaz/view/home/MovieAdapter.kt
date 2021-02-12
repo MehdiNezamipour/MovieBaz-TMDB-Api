@@ -23,12 +23,10 @@ class MovieAdapter(diffCallback: DiffUtil.ItemCallback<Movie>) :
         return MovieViewHolder(listItemLayoutBinding)
     }
 
-
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val item = getItem(position)
         // Note that item may be null. ViewHolder must support binding a
         // null item as a placeholder.
-
         if (item != null) {
             holder.bind(item)
         }
@@ -37,7 +35,6 @@ class MovieAdapter(diffCallback: DiffUtil.ItemCallback<Movie>) :
     // comparator object
     object MovieComparator : DiffUtil.ItemCallback<Movie>() {
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-            // Id is unique.
             return oldItem.id == newItem.id
         }
 

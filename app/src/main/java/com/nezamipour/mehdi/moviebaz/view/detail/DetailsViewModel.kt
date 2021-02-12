@@ -3,7 +3,7 @@ package com.nezamipour.mehdi.moviebaz.view.detail
 import androidx.lifecycle.ViewModel
 import com.nezamipour.mehdi.moviebaz.data.local.MovieRepository
 
-class DetailsViewModel(val movieRepository: MovieRepository) : ViewModel() {
+class DetailsViewModel(private val movieRepository: MovieRepository) : ViewModel() {
 
     fun extractMovieGenres(genre_Ids: List<Int>): String {
         val allGenres = movieRepository.genres

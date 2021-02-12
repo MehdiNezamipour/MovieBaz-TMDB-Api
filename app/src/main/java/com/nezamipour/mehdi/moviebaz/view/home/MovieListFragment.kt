@@ -22,7 +22,6 @@ class MovieListFragment : Fragment() {
     private lateinit var movieAdapter: MovieAdapter
     private val viewModel: HomeViewModel by sharedViewModel()
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
@@ -41,7 +40,6 @@ class MovieListFragment : Fragment() {
                 }
             }
         })
-
     }
 
     override fun onCreateView(
@@ -52,7 +50,6 @@ class MovieListFragment : Fragment() {
         binding = FragmentMovieListBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,7 +77,6 @@ class MovieListFragment : Fragment() {
             }
         }
 
-
         // show the loading state for te first load
         movieAdapter.addLoadStateListener { loadState ->
 
@@ -104,7 +100,6 @@ class MovieListFragment : Fragment() {
         }
 
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_activity_menu, menu)

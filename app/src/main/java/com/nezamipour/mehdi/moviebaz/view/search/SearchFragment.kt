@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nezamipour.mehdi.moviebaz.databinding.FragmentSearchBinding
-import com.nezamipour.mehdi.moviebaz.utils.UiUtils
 import org.koin.android.ext.android.inject
 
 

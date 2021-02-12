@@ -16,18 +16,14 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val movieRepository: MovieRepository) : ViewModel() {
 
-
     private var _genres: MutableLiveData<List<Genre>> = MutableLiveData()
-
     var selectedGenres: MutableLiveData<HashMap<String, String>> = MutableLiveData()
-
 
     val allGenres: LiveData<List<Genre>>
         get() {
             _genres.value = movieRepository.genres
             return _genres
         }
-
 
     fun getPopularMovieFlow(): Flow<PagingData<Movie>> {
         return getMovieListStream(MoviePagingSource(repository = movieRepository, genres = null))

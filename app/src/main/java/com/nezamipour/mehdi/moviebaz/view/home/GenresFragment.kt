@@ -2,9 +2,12 @@ package com.nezamipour.mehdi.moviebaz.view.home
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import androidx.core.view.children
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -22,12 +25,14 @@ class GenresFragment : DialogFragment() {
             selected = viewModel.selectedGenres.value!!
         }
 
-        val view: LinearLayout =
+        val scrollView =
             View.inflate(
                 requireContext(),
                 R.layout.fragment_genres,
                 null
-            ) as LinearLayout
+            )
+
+        val view = scrollView.findViewById<LinearLayout>(R.id.linear)
 
         allGenres.value?.forEach {
             val checkBox = CheckBox(context)
@@ -36,12 +41,11 @@ class GenresFragment : DialogFragment() {
                 checkBox.isChecked = true
             view.addView(checkBox)
             selected.put(it.name.toString(), it.id.toString())
-
         }
 
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.filterByGenre)
-            .setView(view)
+            .setView(scrollView)
             .setPositiveButton(
                 android.R.string.ok
             ) { dialogInterface, i ->
@@ -52,7 +56,6 @@ class GenresFragment : DialogFragment() {
             }
             .setCancelable(false)
             .create()
-
     }
 
     private fun applyGenres(view: LinearLayout, selected: HashMap<String, String>) {
