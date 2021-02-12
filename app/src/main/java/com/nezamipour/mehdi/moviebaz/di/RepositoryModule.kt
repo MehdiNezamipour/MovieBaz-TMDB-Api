@@ -10,4 +10,4 @@ val repositoryModule = module {
 
 fun createRepository(
     movieAppService: MovieAppService
-) : MovieRepository = MovieRepository(movieAppService)
+): MovieRepository = MovieRepository(movieAppService)

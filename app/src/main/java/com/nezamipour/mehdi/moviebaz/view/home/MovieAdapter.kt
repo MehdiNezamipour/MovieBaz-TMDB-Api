@@ -1,6 +1,5 @@
 package com.nezamipour.mehdi.moviebaz.view.home
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
@@ -11,8 +10,6 @@ import com.bumptech.glide.Glide
 import com.nezamipour.mehdi.moviebaz.data.model.Movie
 import com.nezamipour.mehdi.moviebaz.databinding.ListItemLayoutBinding
 import com.nezamipour.mehdi.moviebaz.utils.ImageUtils
-import kotlinx.android.synthetic.main.list_item_layout.*
-import kotlinx.android.synthetic.main.list_item_layout.view.*
 
 class MovieAdapter(diffCallback: DiffUtil.ItemCallback<Movie>) :
     PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(diffCallback) {

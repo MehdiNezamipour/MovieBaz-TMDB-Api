@@ -8,9 +8,8 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nezamipour.mehdi.moviebaz.databinding.LoadStateViewBinding
 
-class MovieLoadStateAdapter(
-    private val retry: () -> Unit
-) : LoadStateAdapter<MovieLoadStateAdapter.LoadStateViewHolder>() {
+class MovieLoadStateAdapter(private val retry: () -> Unit) :
+    LoadStateAdapter<MovieLoadStateAdapter.LoadStateViewHolder>() {
 
     override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) {
 

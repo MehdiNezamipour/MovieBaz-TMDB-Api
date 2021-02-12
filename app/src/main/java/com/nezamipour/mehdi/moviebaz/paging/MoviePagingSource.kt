@@ -4,13 +4,19 @@ import androidx.paging.PagingSource
 import com.nezamipour.mehdi.moviebaz.data.local.MovieRepository
 import com.nezamipour.mehdi.moviebaz.data.model.Movie
 import com.nezamipour.mehdi.moviebaz.network.api.ApiService
+import com.nezamipour.mehdi.moviebaz.network.response.MovieListResponse
 
-class MoviePagingSource(private val repository: MovieRepository) : PagingSource<Int, Movie>() {
+class MoviePagingSource(private val repository: MovieRepository, var genres: String?) :
+    PagingSource<Int, Movie>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
+
             val nextPage = params.key ?: 1
-            val movieListResponse = repository.getPopularMovies(nextPage)
+            val movieListResponse: MovieListResponse = if (genres != null) {
+                repository.discoverByGenre(genres!!, nextPage)
+            } else
+                repository.getPopularMovies(nextPage)
 
             LoadResult.Page(
                 data = movieListResponse.results!!,

@@ -12,23 +12,14 @@ import com.nezamipour.mehdi.moviebaz.databinding.FragmentMovieListBinding
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class MovieListFragment : Fragment() {
 
     private lateinit var mBinding: FragmentMovieListBinding
     private lateinit var movieAdapter: MovieAdapter
-    private val viewModel: HomeViewModel by inject()
-
-
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            MovieListFragment().apply {
-
-            }
-    }
+    private val viewModel: HomeViewModel by sharedViewModel()
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -38,8 +29,17 @@ class MovieListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.getAllGenre()
         movieAdapter = MovieAdapter(MovieAdapter.MovieComparator)
 
+        // apply genres filter with create new data source for movie adapter
+        viewModel.selectedGenres.observe(this, {
+            lifecycleScope.launch {
+                viewModel.getGenresMovieFlow().collectLatest {
+                    movieAdapter.submitData(it)
+                }
+            }
+        })
 
     }
 
@@ -67,7 +67,7 @@ class MovieListFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            viewModel.flow.collectLatest {
+            viewModel.getPopularMovieFlow().collectLatest {
                 movieAdapter.submitData(it)
             }
         }
@@ -87,9 +87,7 @@ class MovieListFragment : Fragment() {
                 val errorState = when {
                     loadState.append is LoadState.Error -> loadState.append as LoadState.Error
                     loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                    loadState.refresh is LoadState.Error -> {
-                        loadState.refresh as LoadState.Error
-                    }
+                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
                     else -> null
                 }
             }
@@ -108,6 +106,11 @@ class MovieListFragment : Fragment() {
             R.id.app_bar_search -> view?.let {
                 Navigation.findNavController(it)
                     .navigate(MovieListFragmentDirections.actionMovieListFragmentToSearchFragment())
+                return true
+            }
+            R.id.app_bar_filter -> view?.let {
+                Navigation.findNavController(it)
+                    .navigate(MovieListFragmentDirections.actionMovieListFragmentToGenresFragment())
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

@@ -1,6 +1,7 @@
 package com.nezamipour.mehdi.moviebaz.network.api
 
 import com.nezamipour.mehdi.moviebaz.network.Routes
+import com.nezamipour.mehdi.moviebaz.network.response.GenreListResponse
 import com.nezamipour.mehdi.moviebaz.network.response.MovieListResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -31,12 +32,13 @@ interface ApiService {
     @GET(Routes.MOVIE_DISCOVER)
     suspend fun discoverByGenre(
         @Query("api_key") api_key: String,
-        @Query("with_genres") genres: String
-    )
+        @Query("with_genres") genres: String,
+        @Query("page") page: Int
+    ): Response<MovieListResponse>
 
 
     //get all genres
     @GET(Routes.MOVIE_GENRES)
-    suspend fun getAllGenres(@Query("api_key") api_key: String)
+    suspend fun getAllGenres(@Query("api_key") api_key: String): Response<GenreListResponse>
 
 }
