@@ -2,6 +2,7 @@ package com.nezamipour.mehdi.moviebaz.view.home
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
@@ -77,7 +78,6 @@ class MovieListFragment : Fragment() {
                     movieAdapter.submitData(it)
                 }
             }
-
         }
 
 
@@ -87,11 +87,15 @@ class MovieListFragment : Fragment() {
             if (loadState.refresh is LoadState.Loading) {
                 binding.progressBar.visibility = View.VISIBLE
                 binding.recyclerViewMovies.visibility = View.GONE
+                binding.bottonRetry.visibility = View.GONE
+
             } else {
                 binding.progressBar.visibility = View.GONE
                 binding.recyclerViewMovies.visibility = View.VISIBLE
+                binding.bottonRetry.visibility = View.GONE
             }
             if (loadState.refresh is LoadState.Error) {
+                Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
                 binding.progressBar.visibility = View.GONE
                 binding.recyclerViewMovies.visibility = View.GONE
                 binding.bottonRetry.visibility = View.VISIBLE
