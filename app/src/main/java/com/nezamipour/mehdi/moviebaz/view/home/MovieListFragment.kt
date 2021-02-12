@@ -71,6 +71,15 @@ class MovieListFragment : Fragment() {
             }
         }
 
+        binding.bottonRetry.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.getPopularMovieFlow().collectLatest {
+                    movieAdapter.submitData(it)
+                }
+            }
+
+        }
+
 
         // show the loading state for te first load
         movieAdapter.addLoadStateListener { loadState ->
@@ -78,12 +87,16 @@ class MovieListFragment : Fragment() {
             if (loadState.refresh is LoadState.Loading) {
                 binding.progressBar.visibility = View.VISIBLE
                 binding.recyclerViewMovies.visibility = View.GONE
-
             } else {
                 binding.progressBar.visibility = View.GONE
                 binding.recyclerViewMovies.visibility = View.VISIBLE
-
             }
+            if (loadState.refresh is LoadState.Error) {
+                binding.progressBar.visibility = View.GONE
+                binding.recyclerViewMovies.visibility = View.GONE
+                binding.bottonRetry.visibility = View.VISIBLE
+            }
+
         }
 
     }

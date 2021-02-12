@@ -10,4 +10,6 @@
     <string name="overview">Overview</string>
     <string name="captal_genres">Genres</string>
     <string name="release_data">Release Data:</string>
+    <string name="error_message">Error message</string>
+    <string name="retry">Retry</string>
 </resources>
