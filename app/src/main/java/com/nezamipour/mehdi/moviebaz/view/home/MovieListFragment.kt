@@ -17,7 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class MovieListFragment : Fragment() {
 
-    private lateinit var mBinding: FragmentMovieListBinding
+    private lateinit var binding: FragmentMovieListBinding
     private lateinit var movieAdapter: MovieAdapter
     private val viewModel: HomeViewModel by sharedViewModel()
 
@@ -31,7 +31,6 @@ class MovieListFragment : Fragment() {
         super.onCreate(savedInstanceState)
         viewModel.getAllGenre()
         movieAdapter = MovieAdapter(MovieAdapter.MovieComparator)
-
         // apply genres filter with create new data source for movie adapter
         viewModel.selectedGenres.observe(this, {
             lifecycleScope.launch {
@@ -48,8 +47,8 @@ class MovieListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mBinding = FragmentMovieListBinding.inflate(inflater, container, false)
-        return mBinding.root
+        binding = FragmentMovieListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 
@@ -58,7 +57,7 @@ class MovieListFragment : Fragment() {
         recyclerViewMovies.adapter = movieAdapter
 
 
-        mBinding.recyclerViewMovies.apply {
+        binding.recyclerViewMovies.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = movieAdapter.withLoadStateFooter(
@@ -78,10 +77,10 @@ class MovieListFragment : Fragment() {
 
             if (loadState.refresh is LoadState.Loading) {
                 // Show ProgressBar
-                mBinding.progressBar.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.VISIBLE
             } else {
                 // Hide ProgressBar
-                mBinding.progressBar.visibility = View.GONE
+                binding.progressBar.visibility = View.GONE
 
                 // If we have an error, show a toast
                 val errorState = when {

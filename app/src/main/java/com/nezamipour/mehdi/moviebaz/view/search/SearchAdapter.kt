@@ -26,9 +26,7 @@ class SearchAdapter(var movies: List<Movie>) :
         // Note that item may be null. ViewHolder must support binding a
         // null item as a placeholder.
 
-        if (item != null) {
-            holder.bind(item)
-        }
+        holder.bind(item)
     }
 
     override fun getItemCount(): Int {

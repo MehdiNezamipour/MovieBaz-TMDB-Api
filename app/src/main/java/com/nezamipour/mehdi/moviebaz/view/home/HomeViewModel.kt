@@ -29,6 +29,13 @@ class HomeViewModel(private val movieRepository: MovieRepository) : ViewModel() 
         }
 
 
+    private fun getMovieListStream(moviePagingSource: MoviePagingSource): Flow<PagingData<Movie>> {
+        return Pager(PagingConfig(20)) {
+            moviePagingSource
+        }.flow
+            .cachedIn(viewModelScope)
+    }
+
     fun getPopularMovieFlow(): Flow<PagingData<Movie>> {
         return getMovieListStream(MoviePagingSource(repository = movieRepository, genres = null))
             .map { pagingData -> pagingData.map { it } }
@@ -44,13 +51,6 @@ class HomeViewModel(private val movieRepository: MovieRepository) : ViewModel() 
             .map { pagingData -> pagingData.map { it } }
     }
 
-
-    private fun getMovieListStream(moviePagingSource: MoviePagingSource): Flow<PagingData<Movie>> {
-        return Pager(PagingConfig(20)) {
-            moviePagingSource
-        }.flow
-            .cachedIn(viewModelScope)
-    }
 
     fun getAllGenre() {
         viewModelScope.launch {

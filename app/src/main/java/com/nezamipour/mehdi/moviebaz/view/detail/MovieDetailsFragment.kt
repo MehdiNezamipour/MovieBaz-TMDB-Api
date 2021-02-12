@@ -55,16 +55,9 @@ class MovieDetailsFragment : Fragment() {
                     .into(binding.imageViewSmallImage)
             }
 
-
         }
 
-
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            MovieDetailsFragment().apply {
-            }
-    }
+
 }
