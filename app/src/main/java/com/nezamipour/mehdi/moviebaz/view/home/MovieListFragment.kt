@@ -71,6 +71,7 @@ class MovieListFragment : Fragment() {
 
         binding.bottonRetry.setOnClickListener {
             lifecycleScope.launch {
+                viewModel.getAllGenre()
                 viewModel.getPopularMovieFlow().collectLatest {
                     movieAdapter.submitData(it)
                 }
